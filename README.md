@@ -11,6 +11,8 @@ It includes 2 things:
 - Resouce checker
 https://www.assetstore.unity3d.com/en/#!/content/3224
 
+https://github.com/handcircus/Unity-Resource-Checker
+
 I just added this tool , it's a must use to know how much your assets are using.
 
 All credit goes to the awesome guy who made it and made it free.
