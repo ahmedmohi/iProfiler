@@ -24,5 +24,7 @@ Its a script that you just put on your camera and will show you
   
   How to use :
   - Just add the script "Statsman" to your camera
+  
+  - There's a unity package you can just import it in your projects , or just copy statsman script (its just one script in the end xD)
 
 I'm glad to have any suggestions or comments on the scipt or any guide to get more stats from unity.
