@@ -1,9 +1,8 @@
 # iProfiler
-Moniter game stats and fps for your game , including memory usage and draw calls
 
 Hi,
 
-This is alittle profiling tools to help in monitering your game.
+This is alittle profiling tools to help in monitering some of the main stats in your game on different devices without the need to always connect to profile.
 
 ![alt tag](https://s30.postimg.org/6s86yeyq9/iprofiler.png)
 
