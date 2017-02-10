@@ -68,7 +68,7 @@ public class StatsMan : MonoBehaviour
             gui.text += '\n' + "GPU memory : " + SystemInfo.graphicsMemorySize + "   Sys Memory : " + SystemInfo.systemMemorySize;
 
             gui.text += '\n' + "TotalAllocatedMemory : " + Profiler.GetTotalAllocatedMemory() / 1048576 + "mb" + "   TotalReservedMemory : " + Profiler.GetTotalReservedMemory() / 1048576 + "mb" + "   TotalUnusedReservedMemory : " + Profiler.GetTotalUnusedReservedMemory() / 1048576 + "mb";
-
+            
 #if UNITY_EDITOR
             gui.text += "\nDrawCalls : " + UnityStats.drawCalls +
             '\n' +
