@@ -34,3 +34,5 @@ Its a script that you just put on your camera and will show you
   How to use :
   - Just add the script "Statsman" to your camera
   - For Resource Checker you will find it in  window -> Resource Checker
+
+I'm glad to have any suggestions or comments on the scipt or any guide to get more stats from unity.
