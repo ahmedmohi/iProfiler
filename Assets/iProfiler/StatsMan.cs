@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -11,7 +12,7 @@ public class StatsMan : MonoBehaviour
 {
 
     public Color tx_Color = Color.white;
-
+    StringBuilder tx;
     GUIText gui;
 
     float updateInterval = 1.0f;
@@ -27,7 +28,7 @@ public class StatsMan : MonoBehaviour
         lastInterval = Time.realtimeSinceStartup;
         frames = 0;
         framesav = 0;
-
+        tx = new StringBuilder();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
@@ -63,20 +64,25 @@ public class StatsMan : MonoBehaviour
             framesav += fps;
             float fpsav = framesav / framesavtick;
 
-            gui.text = "Time : " + ms.ToString("f1") + "ms   " + "Current FPS : " + fps.ToString("f2") + "   AvgFps : " + fpsav.ToString("f2") +
-            '\n';
-            gui.text += '\n' + "GPU memory : " + SystemInfo.graphicsMemorySize + "   Sys Memory : " + SystemInfo.systemMemorySize;
+            tx.Length = 0;
+            tx.Capacity = 0;
 
-            gui.text += '\n' + "TotalAllocatedMemory : " + Profiler.GetTotalAllocatedMemory() / 1048576 + "mb" + "   TotalReservedMemory : " + Profiler.GetTotalReservedMemory() / 1048576 + "mb" + "   TotalUnusedReservedMemory : " + Profiler.GetTotalUnusedReservedMemory() / 1048576 + "mb";
+            tx.Append("Time : ").Append(ms.ToString("f1")).Append("ms   ")
+            .Append("Current FPS : ").Append(fps.ToString("f2"))
+            .Append("   AvgFps : ").Append(fpsav.ToString("f2")).Append('\n')
+            .Append('\n').Append("GPU memory : ").Append(SystemInfo.graphicsMemorySize)
+            .Append("   Sys Memory : ").Append(SystemInfo.systemMemorySize)
+            .Append('\n').Append("TotalAllocatedMemory : ").Append(Profiler.GetTotalAllocatedMemory() / 1048576).Append("mb")
+            .Append("   TotalReservedMemory : ").Append(Profiler.GetTotalReservedMemory() / 1048576).Append("mb")
+            .Append("   TotalUnusedReservedMemory : ").Append(Profiler.GetTotalUnusedReservedMemory() / 1048576).Append("mb");
             
 #if UNITY_EDITOR
-            gui.text += "\nDrawCalls : " + UnityStats.drawCalls +
-            '\n' +
-            "Used Texture Memory : " + UnityStats.usedTextureMemorySize / 1024 / 1024 + "mb" +
-            '\n' +
-            "renderedTextureCount : " + UnityStats.usedTextureCount;
+            tx.Append("\nDrawCalls : ").Append(UnityStats.drawCalls).Append('\n')
+            .Append("Used Texture Memory : ").Append(UnityStats.usedTextureMemorySize / 1024 / 1024).Append("mb").Append('\n')
+            .Append("renderedTextureCount : ").Append(UnityStats.usedTextureCount);
             #endif
 
+            gui.text = tx.ToString();
             frames = 0;
             lastInterval = timeNow;
         }
