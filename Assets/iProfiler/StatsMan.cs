@@ -29,6 +29,7 @@ public class StatsMan : MonoBehaviour
         frames = 0;
         framesav = 0;
         tx = new StringBuilder();
+        tx.Capacity = 200;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
@@ -65,22 +66,18 @@ public class StatsMan : MonoBehaviour
             float fpsav = framesav / framesavtick;
 
             tx.Length = 0;
-            tx.Capacity = 0;
 
-            tx.Append("Time : ").Append(ms.ToString("f1")).Append("ms   ")
-            .Append("Current FPS : ").Append(fps.ToString("f2"))
-            .Append("   AvgFps : ").Append(fpsav.ToString("f2")).Append('\n')
-            .Append('\n').Append("GPU memory : ").Append(SystemInfo.graphicsMemorySize)
-            .Append("   Sys Memory : ").Append(SystemInfo.systemMemorySize)
-            .Append('\n').Append("TotalAllocatedMemory : ").Append(Profiler.GetTotalAllocatedMemory() / 1048576).Append("mb")
-            .Append("   TotalReservedMemory : ").Append(Profiler.GetTotalReservedMemory() / 1048576).Append("mb")
-            .Append("   TotalUnusedReservedMemory : ").Append(Profiler.GetTotalUnusedReservedMemory() / 1048576).Append("mb");
-            
+            tx.AppendFormat("Time : {0} ms     Current FPS: {1}     AvgFPS: {2}\nGPU memory : {3}    Sys Memory : {4}\n", ms, fps, fpsav, SystemInfo.graphicsMemorySize, SystemInfo.systemMemorySize)
+
+            .AppendFormat("TotalAllocatedMemory : {0}mb\nTotalReservedMemory : {1}mb\nTotalUnusedReservedMemory : {2}mb",
+            Profiler.GetTotalAllocatedMemory() / 1048576,
+            Profiler.GetTotalReservedMemory() / 1048576,
+            Profiler.GetTotalUnusedReservedMemory() / 1048576
+            );
+
 #if UNITY_EDITOR
-            tx.Append("\nDrawCalls : ").Append(UnityStats.drawCalls).Append('\n')
-            .Append("Used Texture Memory : ").Append(UnityStats.usedTextureMemorySize / 1024 / 1024).Append("mb").Append('\n')
-            .Append("renderedTextureCount : ").Append(UnityStats.usedTextureCount);
-            #endif
+            tx.AppendFormat("\nDrawCalls : {0}\nUsed Texture Memory : {1}\nrenderedTextureCount : {2}", UnityStats.drawCalls, UnityStats.usedTextureMemorySize / 1048576, UnityStats.usedTextureCount);
+#endif
 
             gui.text = tx.ToString();
             frames = 0;
