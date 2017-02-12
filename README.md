@@ -28,3 +28,6 @@ Its a script that you just put on your camera and will show you
   - There's a unity package you can just import it in your projects , or just copy statsman script (its just one script in the end xD)
 
 I'm glad to have any suggestions or comments on the scipt or any guide to get more stats from unity.
+
+Some optimization have been done for the script thanks for awesome people here:
+https://www.reddit.com/r/Unity3D/comments/5ta7gb/a_free_script_to_show_game_stats_fps_memory_usage/
